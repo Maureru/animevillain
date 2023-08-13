@@ -1,0 +1,83 @@
+import React, { useEffect, useState } from 'react';
+import { BsStars } from 'react-icons/bs';
+import { Link, useLoaderData } from 'react-router-dom';
+import { AnimeType } from '../types';
+import { useInView } from 'react-intersection-observer';
+import axios from 'axios';
+
+import PromoteMe from '../components/Banner/PromoteMe';
+
+interface AnimeListProps {}
+
+const AnimeList: React.FC<AnimeListProps> = () => {
+  useEffect(() => {
+    return () => window.scrollTo({ top: 0, left: 0 });
+  }, []);
+
+  const { data } = useLoaderData() as { data: AnimeType[] };
+
+  const [animes, setAnimes] = useState<AnimeType[]>(data);
+  const [page, setPage] = useState<number>(1);
+
+  /* ======== Load Data on Scroll =========== */
+  const [isLoading, setIsLoading] = useState<boolean>(false);
+  const [ref, inView] = useInView({
+    threshold: 0.1,
+  });
+
+  useEffect(() => {
+    const loadMoreData = async () => {
+      setIsLoading(true);
+      await axios
+        .get(`https://api.jikan.moe/v4/anime?page=${page + 1}`)
+        .then((res) => {
+          setAnimes((prev) => [...prev, ...res.data.data]);
+          setPage((prev) => prev + 1);
+          setIsLoading(false);
+        })
+        .catch((err) => console.log(err));
+    };
+
+    if (inView && !isLoading) {
+      loadMoreData();
+      console.log('ADDING');
+    }
+  }, [inView, isLoading, page]);
+
+  return (
+    <div className="px-24 pb-2 pt-28">
+      <PromoteMe />
+      <div className="text-gold text-2xl flex gap-2 items-center">
+        <BsStars />
+        <h1 className=" font-bold">Anime List</h1>
+      </div>
+      <div
+        style={{
+          gridTemplateColumns: 'repeat(auto-fill, minmax(200px, 1fr))',
+        }}
+        className="grid gap-x-4 gap-y-6 mt-4 auto-cols-max"
+      >
+        {animes.map((obj, i: number) => (
+          <Link to={`/anime/${obj.mal_id}`} key={i}>
+            <div className="cursor-pointer">
+              <div
+                style={{
+                  backgroundImage: `url(${obj.images.webp.large_image_url})`,
+                }}
+                className="w-[200px] h-[250px] rounded-md bg-cover bg-center"
+              ></div>
+              <div className="mt-2">
+                <h1 className="font-bold">{obj.title}</h1>
+                <h1 className="font-bold text-gold text-[0.7rem]">
+                  Rating: <span>{obj.score}/10</span>
+                </h1>
+              </div>
+            </div>
+          </Link>
+        ))}
+        <div ref={ref}></div>
+      </div>
+    </div>
+  );
+};
+export default AnimeList;
