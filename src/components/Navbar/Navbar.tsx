@@ -41,7 +41,7 @@ const Navbar: React.FC<NavbarProps> = () => {
   const searchedRef = useRef<HTMLDivElement>(null);
 
   const closeSearchedOnOutsideClick = (e: MouseEvent) => {
-    if (!searchedRef.current?.contains(e.target)) {
+    if (!searchedRef.current?.contains(e.target as Node)) {
       setIsSearchedOpen(false);
     }
   };
