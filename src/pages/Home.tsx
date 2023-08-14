@@ -80,10 +80,10 @@ const Home: React.FC<HomeProps> = () => {
   }, []);
 
   return (
-    <div className="px-16 mb-16 mt-28">
+    <div className="px-3 sm:px-6 xl:px-16 mb-16 mt-28">
       {/* =========== Header ========== */}
-      <div className="h-[35rem] flex gap-5">
-        <div className="w-[75%]">
+      <div className="h-auto lg:h-[35rem] block lg:flex gap-5">
+        <div className="h-[35rem] w-full lg:w-[75%]">
           <div className="text-gold text-lg flex gap-2 items-center">
             <BsStars />
             <h1>New</h1>
@@ -153,7 +153,7 @@ const Home: React.FC<HomeProps> = () => {
         </div>
 
         {/*  ===== Trending ========= */}
-        <div className="grow">
+        <div className="grow hidden lg:block">
           <div className="text-gold text-lg flex gap-2 items-center">
             <BsStars />
             <h1>Trending</h1>

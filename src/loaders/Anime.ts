@@ -5,6 +5,10 @@ const animeLoader = async ({ params }: LoaderFunctionArgs) => {
     const resp = await fetch(
       `https://api.jikan.moe/v4/anime/${params.id}/characters`
     );
+
+    if (!res.ok) {
+      throw Error('Anime not found!')
+    }
   
     return {
       anime: await res.json(),

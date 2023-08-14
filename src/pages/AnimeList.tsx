@@ -45,18 +45,13 @@ const AnimeList: React.FC<AnimeListProps> = () => {
   }, [inView, isLoading, page]);
 
   return (
-    <div className="px-24 pb-2 pt-28">
+    <div className="px-3 sm:px-6 xl:px-24 pb-2 pt-28">
       <PromoteMe />
       <div className="text-gold text-2xl flex gap-2 items-center">
         <BsStars />
         <h1 className=" font-bold">Anime List</h1>
       </div>
-      <div
-        style={{
-          gridTemplateColumns: 'repeat(auto-fill, minmax(200px, 1fr))',
-        }}
-        className="grid gap-x-4 gap-y-6 mt-4 auto-cols-max"
-      >
+      <div className="grid animesWrapper gap-x-4 gap-y-6 mt-4 auto-cols-max">
         {animes.map((obj, i: number) => (
           <Link to={`/anime/${obj.mal_id}`} key={i}>
             <div className="cursor-pointer">
@@ -64,7 +59,7 @@ const AnimeList: React.FC<AnimeListProps> = () => {
                 style={{
                   backgroundImage: `url(${obj.images.webp.large_image_url})`,
                 }}
-                className="w-[200px] h-[250px] rounded-md bg-cover bg-center"
+                className="w-full lg:w-[200px] aspect-[200/250] rounded-md bg-cover bg-center"
               ></div>
               <div className="mt-2">
                 <h1 className="font-bold">{obj.title}</h1>

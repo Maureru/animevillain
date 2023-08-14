@@ -10,7 +10,7 @@ const Root: React.FC<RootProps> = () => {
     <div>
       <Navbar />
       <Outlet />
-      <div className="px-16 pt-4 pb-4">
+      <div className="px-3 sm:px-6 xl:px-16 pt-4 pb-4">
         <FeaturedAnime />
       </div>
     </div>

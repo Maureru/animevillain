@@ -13,7 +13,7 @@ const Search: React.FC<SearchProps> = ({
   searchSubmit,
 }) => {
   return (
-    <div className="min-w-[500px] flex items-center gap-2 py-1 px-2 rounded-md bg-[#212121]">
+    <div className="min-w-[250px] sm:min-w-[500px] flex items-center gap-2 py-1 px-2 rounded-md bg-[#212121]">
       <AiOutlineSearch />
       <input
         value={search}

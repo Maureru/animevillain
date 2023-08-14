@@ -79,3 +79,32 @@ body::-webkit-scrollbar-thumb {
     transform: translateX(100%);
   }
 
+
+/* =========== Anime Grid Wrapper ======== */
+
+.animesWrapper {
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+}
+
+@media (max-width: 640px) {
+    .animesWrapper {
+        grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+    }
+}
+
+
+@media (min-width: 640px) {
+    .animesWrapper {
+        grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+    }
+}
+@media (min-width: 768px) {
+    .animesWrapper {
+        grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+    }
+}
+@media (min-width: 1024px) {
+    .animesWrapper {
+        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    }
+}

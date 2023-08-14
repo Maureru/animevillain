@@ -14,7 +14,7 @@ const Anime: React.FC<AnimeProps> = () => {
 
   return (
     <div className="mb-4">
-      <div className="px-24 relative h-screen pb-2 pt-28 ">
+      <div className="px-3 sm:px-6 xl:px-24 relative h-auto xl:h-screen pb-2 pt-28 ">
         <div
           style={{
             backgroundImage: `url(${anime.data.trailer.images.maximum_image_url})`,
@@ -24,14 +24,14 @@ const Anime: React.FC<AnimeProps> = () => {
           <div className="w-full h-full absolute top-0 left-0 z-10 bg-black/90" />
         </div>
 
-        <div className="h-[38rem] relative z-20 flex gap-8">
+        <div className="h-auto xl:h-[38rem] relative z-20 lg:flex gap-8">
           <div
             style={{
               backgroundImage: `url(${anime.data.images.webp.large_image_url})`,
             }}
-            className="h-full flex-shrink-0 w-[32rem] bg-cover bg-center rounded-xl "
+            className="hidden md:block h-[42rem] xl:h-full flex-shrink-0 w-full lg:w-[26rem] xl:w-[32rem] bg-cover bg-center rounded-xl "
           ></div>
-          <div className="">
+          <div className=" md:mt-4 lg:mt-0">
             <h1>Home | TV</h1>
             <h1 className="text-4xl font-extrabold my-5">{anime.data.title}</h1>
             <h1>
@@ -82,11 +82,11 @@ const Anime: React.FC<AnimeProps> = () => {
         </div>
       </div>
 
-      <div className="mt-6 px-24">
+      <div className="mt-6 px-3 sm:px-6 xl:px-24">
         <h1 className="text-gold my-4 font-extrabold">
           Characters and Voice Actors
         </h1>
-        <div className="grid grid-cols-3 gap-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
           {characters.data.map((char, i: number) => (
             <div key={i} className="flex gap-4 p-3 bgGray rounded-md">
               <div
